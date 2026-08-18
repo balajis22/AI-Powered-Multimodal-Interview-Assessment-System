@@ -7,12 +7,14 @@ from backend.vision.eye_contact import detect_eye_contact
 from backend.vision.head_pose import detect_head_pose
 
 
-def analyze_interview(duration=20):
+def analyze_interview(duration=20, start_event=None):
 
     cap = cv2.VideoCapture(0)
 
     if not cap.isOpened():
         raise RuntimeError("Could not open webcam.")
+    if start_event is not None:
+        start_event.wait()
 
     emotions = []
     eyes = []
